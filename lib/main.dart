@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+String resultado = "0";
+TextEditingController textControllerResult = TextEditingController();
 void main() {
   runApp(MyApp());
 }
@@ -18,14 +20,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
+String calcular(double num1, double num2, String operacao) {
+  // ignore: unused_local_variable
+  double result;
+  switch (operacao) {
+    case '+':
+      result = num1 + num2;
+      break;
+    case '-':
+      result = num1 - num2;
+      break;
+    case '*':
+      result = num1 * num2;
+      break;
+
+    case '/':
+      result = num1 / num2;
+      break;
+
+    default:
+  }
+
+  return textControllerResult.text = result.toString();
+}
+
 class MyWidget extends StatelessWidget {
   TextEditingController textController = TextEditingController();
+
   String resultado = "0";
   double operando = 0.0;
+  double num1;
+  double num2;
+  String operacao;
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       TextField(controller: textController),
+      TextField(controller: textControllerResult),
       Row(children: [
         Flexible(
             flex: 1,
@@ -39,7 +71,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("7", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "7";
+                      textController.text = textController.text + "7";
                     }))),
         Flexible(
             flex: 1,
@@ -53,7 +85,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("8", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "8";
+                      textController.text = textController.text + "8";
                     }))),
         Flexible(
             flex: 1,
@@ -67,7 +99,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("9", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "9";
+                      textController.text = textController.text + "9";
                     }))),
         Flexible(
             flex: 1,
@@ -82,7 +114,9 @@ class MyWidget extends StatelessWidget {
                     child: Text("/", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
-                      textController.text = "/";
+                      num1 = double.tryParse(textController.text);
+                      operacao = "/";
+                      textController.text = "";
                     }))),
       ]),
       Row(children: [
@@ -98,7 +132,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("4", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "4";
+                      textController.text = textController.text + "4";
                     }))),
         Flexible(
             flex: 1,
@@ -112,7 +146,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("5", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "5";
+                      textController.text = textController.text + "5";
                     }))),
         Flexible(
             flex: 1,
@@ -126,7 +160,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("6", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "6";
+                      textController.text = textController.text + "6";
                     }))),
         Flexible(
             flex: 1,
@@ -141,7 +175,9 @@ class MyWidget extends StatelessWidget {
                     child: Text("*", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
-                      textController.text = "*";
+                      num1 = double.tryParse(textController.text);
+                      operacao = "*";
+                      textController.text = "";
                     }))),
       ]),
       Row(children: [
@@ -157,7 +193,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("1", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "1";
+                      textController.text = textController.text + "1";
                     }))),
         Flexible(
             flex: 1,
@@ -171,7 +207,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("2", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "2";
+                      textController.text = textController.text + "2";
                     }))),
         Flexible(
             flex: 1,
@@ -185,7 +221,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("3", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "3";
+                      textController.text = textController.text + "3";
                     }))),
         Flexible(
             flex: 1,
@@ -200,7 +236,9 @@ class MyWidget extends StatelessWidget {
                     child: Text("-", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
-                      textController.text = "-";
+                      num1 = double.tryParse(textController.text);
+                      operacao = "-";
+                      textController.text = "";
                     }))),
       ]),
       Row(children: [
@@ -216,7 +254,7 @@ class MyWidget extends StatelessWidget {
                 child: RaisedButton(
                     child: Text("0", style: TextStyle(fontSize: 40)),
                     onPressed: () {
-                      textController.text = "0";
+                      textController.text = textController.text + "0";
                     }))),
         Flexible(
             flex: 1,
@@ -231,7 +269,9 @@ class MyWidget extends StatelessWidget {
                     child: Text("+", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
-                      textController.text = "+";
+                      num1 = double.tryParse(textController.text);
+                      operacao = "+";
+                      textController.text = "";
                     }))),
       ]),
       Row(children: [
@@ -248,7 +288,7 @@ class MyWidget extends StatelessWidget {
                     child: Text("C", style: TextStyle(fontSize: 40)),
                     color: Colors.grey,
                     onPressed: () {
-                      textController.text = "c";
+                      textController.text = "";
                     }))),
         Flexible(
             flex: 3,
@@ -263,6 +303,7 @@ class MyWidget extends StatelessWidget {
                     child: Text("=", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
+                      calcular(num1, num2, operacao);
                       textController.text = "=";
                     }))),
       ]),
