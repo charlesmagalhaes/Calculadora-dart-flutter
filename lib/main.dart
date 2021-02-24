@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-String calcular(double num1, double num2, String operacao) {
+void calcular(double num1, double num2, String operacao) {
   // ignore: unused_local_variable
   double result;
   switch (operacao) {
@@ -41,7 +41,7 @@ String calcular(double num1, double num2, String operacao) {
     default:
   }
 
-  return textControllerResult.text = result.toString();
+  textControllerResult.text = result.toString();
 }
 
 class MyWidget extends StatelessWidget {
@@ -289,6 +289,7 @@ class MyWidget extends StatelessWidget {
                     color: Colors.grey,
                     onPressed: () {
                       textController.text = "";
+                      textControllerResult.text = "";
                     }))),
         Flexible(
             flex: 3,
@@ -303,8 +304,8 @@ class MyWidget extends StatelessWidget {
                     child: Text("=", style: TextStyle(fontSize: 40)),
                     color: Colors.blue,
                     onPressed: () {
+                      num2 = double.tryParse(textController.text);
                       calcular(num1, num2, operacao);
-                      textController.text = "=";
                     }))),
       ]),
     ]);
